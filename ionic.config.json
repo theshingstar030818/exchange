@@ -1,0 +1,8 @@
+{
+  "name": "exchange",
+  "app_id": "dce2cb65",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
