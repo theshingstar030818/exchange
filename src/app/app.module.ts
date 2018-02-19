@@ -6,20 +6,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ExchangePage } from '../pages/exchange/exchange';
-
+import { FeedPage } from '../pages/feed/feed';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AdaProvider } from '../providers/ada/ada';
 import { CoinMarketCapProvider } from '../providers/coin-market-cap/coin-market-cap';
 import { CoinIconsProvider } from '../providers/coin-market-cap/icons';
 
+
 @NgModule({
   declarations: [
     MyApp,
-    ExchangePage,
-    HomePage
+    FeedPage,
   ],
   imports: [
     BrowserModule,
@@ -31,8 +29,7 @@ import { CoinIconsProvider } from '../providers/coin-market-cap/icons';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ExchangePage,
-    HomePage
+    FeedPage,
   ],
   providers: [
     StatusBar,

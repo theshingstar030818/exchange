@@ -18,6 +18,8 @@ env:
 
 install:
   - npm install -g gulp bower cordova ionic
+  - npm install -g awsmobile-cli
+  - pip install awscli
   - npm install
   - bower update
 
