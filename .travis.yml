@@ -1,38 +1,37 @@
-os:
-- linux
-language: java
-jdk:
-- oraclejdk8
+sudo: false
+
+language: node_js
 node_js:
-- iojs
-- '7'
-env:
-- NODE_VERSION=6.7.0
+  - "5.1"
+
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
-    - oracle-java8-installer
+    - openjdk-7-jdk
     - lib32stdc++6
     - lib32z1
-before_install:
-- echo before_install
-- nvm install $NODE_VERSION
-- export LANG=en_US.UTF-8
-- node -v
-- npm -v
-- ls -la
+env:
+  CXX=g++-4.8
+
 install:
-- echo install
+  - npm install -g gulp bower cordova ionic
+  - npm install
+  - bower update
+
 before_script:
-- echo before_script
-- echo $JAVA_HOME
-- java -version
-- export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  - wget http://dl.google.com/android/android-sdk_r24.4-linux.tgz
+  - tar -xvf android-sdk_r24.4-linux.tgz
+  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter platform-tools
+  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter build-tools-23.0.2
+  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter android-23
+  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-support
+  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-m2repository
+  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-google-m2repository
+  - export ANDROID_HOME=$PWD/android-sdk-linux
+  - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
+
 script:
-- echo script
-after_script:
-- echo after_script
-- rm -rf *
+  - cordova prepare
